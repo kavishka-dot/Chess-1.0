@@ -21,4 +21,4 @@ This project lets you play a simple game of chess using the Pygame library.
 ## Note:
 
 This is a simple implementation and doesn't include advanced features like AI opponents or castling.
-** Have fun playing chess!**
+**Have fun playing chess!**
