@@ -9,9 +9,9 @@ This project lets you play a simple game of chess using the Pygame library.
 - Favorite chess piece images (PNG format)
 ## How to play:
 
-Download the two Python files (chessEngine.py and chessMain.py) and save them in the same directory.
-Download your favorite chess piece images (one for each piece type) in PNG format and save them in the same directory. Rename them to match the piece names (e.g., wp.png, bK.png).
-Run chessMain.py to start the game.
+- Download the two Python files (`chessEngine.py` and `chessMain.py`) and save them in the same directory.
+- Download your favorite chess piece images (one for each piece type) in PNG format and save them in the same directory. Rename them to match the piece names (e.g., wp.png, bK.png).
+- Run `chessMain.py` to start the game.
 
 ## Features:
 
