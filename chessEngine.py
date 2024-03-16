@@ -13,7 +13,7 @@ class GameState():
             ["bR", "bN", "bB", "bQ", "bK", "bB", "bN", "bR"],
             ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
             ["--", "--", "--", "--", "--", "--", "--", "--"],
-            ["--", "--", "--", "--", "--", "--", "--", "--"],
+            ["--", "--", "--", "wQ", "--", "--", "--", "--"],
             ["--", "--", "--", "--", "--", "--", "--", "--"],
             ["--", "--", "--", "--", "--", "--", "--", "--"],
             ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
@@ -88,55 +88,20 @@ class GameState():
 
         color = self.board[r][c][0]
         opColor = "w" if color == "b" else "b"
-        
-        # up 
-        for i in range(1,8):
-            pos = (r-i , c)
-            if (pos[0] <0 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
 
-        # down
-        for i in range(1,8):
-            pos = (r+i , c)
-            if (pos[0] >7 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
+        directions = [(1,0),(-1,0),(0,1),(0,-1)]
 
-        # left
-        for i in range(1,8):
-            pos = (r , c-i)
-            if (pos[1] <0 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+        for direction in directions:
+            for i in range(1,8):
+                pos = (r + direction[0]*i, c + direction[1]*i)
+                if (pos[0] > 7) or (pos[1] > 7) or (pos[0]<0) or (pos[1]<0): # out of the board
+                    break
+                if self.board[pos[0]][pos[1]][0] == color: # same type piece
+                    break
+                if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+                    moves.append(Move((r,c), pos, self.board))
+                    break
                 moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # right
-        for i in range(1,8):
-            pos = (r , c+i)
-            if (pos[1] > 7 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-            
 
 
     def getKnightMoves(self, r, c, moves):
@@ -155,156 +120,40 @@ class GameState():
         color = self.board[r][c][0]
         opColor = "w" if color == "b" else "b"
 
-        # down-right
-        for i in range(1,8):
-            pos = (r+i , c+i)
-            if (pos[0] > 7) or (pos[1] > 7): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
+        directions = [(1,1),(1,-1),(-1,1),(-1,-1)]
 
-        # down-left
-        for i in range(1,8):
-            pos = (r+i , c-i)
-            if (pos[0] >7) or (pos[1] <0): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+        for direction in directions:
+            for i in range(1,8):
+                pos = (r + direction[0]*i, c + direction[1]*i)
+                if (pos[0] > 7) or (pos[1] > 7) or (pos[0]<0) or (pos[1]<0): # out of the board
+                    break
+                if self.board[pos[0]][pos[1]][0] == color: # same type piece
+                    break
+                if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+                    moves.append(Move((r,c), pos, self.board))
+                    break
                 moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # up - right
-        for i in range(1,8):
-            pos = (r-i , c+i)
-            if (pos[0] <0) or (pos[1] >7): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # up - left
-        for i in range(1,8):
-            pos = (r-i , c-i)
-            if (pos[0] <0) or (pos[1] <0): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-            
+           
         
 
     def getQueenMoves(self, r, c, moves):
         color = self.board[r][c][0]
         opColor = "w" if color == "b" else "b"
+
+        directions = [(1,1),(1,-1),(-1,1),(-1,-1),(1,0),(-1,0),(0,1),(0,-1)]
         
-        # up 
-        for i in range(1,8):
-            pos = (r-i , c)
-            if (pos[0] <0 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+        for direction in directions:
+            for i in range(1,8):
+                pos = (r + direction[0]*i, c + direction[1]*i)
+                if (pos[0] > 7) or (pos[1] > 7) or (pos[0]<0) or (pos[1]<0): # out of the board
+                    break
+                if self.board[pos[0]][pos[1]][0] == color: # same type piece
+                    break
+                if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
+                    moves.append(Move((r,c), pos, self.board))
+                    break
                 moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # down
-        for i in range(1,8):
-            pos = (r+i , c)
-            if (pos[0] >7 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # left
-        for i in range(1,8):
-            pos = (r , c-i)
-            if (pos[1] <0 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # right
-        for i in range(1,8):
-            pos = (r , c+i)
-            if (pos[1] > 7 ): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # down-right
-        for i in range(1,8):
-            pos = (r+i , c+i)
-            if (pos[0] > 7) or (pos[1] > 7): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # down-left
-        for i in range(1,8):
-            pos = (r+i , c-i)
-            if (pos[0] >7) or (pos[1] <0): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # up - right
-        for i in range(1,8):
-            pos = (r-i , c+i)
-            if (pos[0] <0) or (pos[1] >7): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-
-        # up - left
-        for i in range(1,8):
-            pos = (r-i , c-i)
-            if (pos[0] <0) or (pos[1] <0): # out of the board
-                break
-            if self.board[pos[0]][pos[1]][0] == color: # same type piece
-                break
-            if self.board[pos[0]][pos[1]][0]  == opColor: # capture an enemy piece
-                moves.append(Move((r,c), pos, self.board))
-                break
-            moves.append(Move((r,c), pos, self.board))
-            
+        
 
     def getKingMoves(self, r, c, moves):
         
