@@ -4,9 +4,9 @@ This project lets you play a simple game of chess using the Pygame library.
 
 ## What you'll need:
 
-Python 3 (Download from https://www.python.org/downloads/)
-Pygame library (pip install pygame)
-Favorite chess piece images (PNG format)
+-Python 3 (Download from https://www.python.org/downloads/)
+-Pygame library (pip install pygame)
+-Favorite chess piece images (PNG format)
 ## How to play:
 
 Download the two Python files (chessEngine.py and chessMain.py) and save them in the same directory.
