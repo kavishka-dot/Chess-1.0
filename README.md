@@ -1,7 +1,7 @@
 # Chess-1.0
 ## Chess with Pygame!
 This project lets you play a simple game of chess using the Pygame library.
-
+![Screenshot 2024-03-23 010100](https://github.com/kavishka-dot/Chess-1.0/assets/82282978/14e3154e-7b88-4a5e-a007-4865c3ef1fdc)
 ## What you'll need:
 
 - Python 3 (Download from https://www.python.org/downloads/)
@@ -17,7 +17,9 @@ This project lets you play a simple game of chess using the Pygame library.
 
 - Basic two-player chess gameplay.
 - Visual representation of the chessboard using Pygame.
-- Click functionality to move pieces. 
+- Click functionality to move pieces.
+- Move highlighting
+- Castling and Pawn promotion capabilities 
 ## Note:
 
 This is a simple implementation and doesn't include advanced features like AI opponents or castling.
