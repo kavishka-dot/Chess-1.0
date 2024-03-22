@@ -22,5 +22,5 @@ This project lets you play a simple game of chess using the Pygame library.
 - Castling and Pawn promotion capabilities 
 ## Note:
 
-This is a simple implementation and doesn't include advanced features like AI opponents or castling.
+This simple implementation doesn't include advanced features like AI opponents.
 **Have fun playing chess!**
